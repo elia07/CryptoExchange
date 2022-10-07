@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "SearchTransaction";
+    Layout = "~/Views/Shared/PublicLayout.cshtml";
+}
+<div id="main-wrapper">
+    <div class=" section-padding">
+        <div class="container h-100">
+            <div class="row justify-content-center h-100 align-items-center">
+                <div class="col-xl-4 col-md-6">
+                    <div class="auth-form card">
+                        <div class="card-header justify-content-center">
+                            <h4 class="card-title">جستجوی تراکنش</h4>
+                        </div>
+                        <div class="card-body">
+                            <form action="/InstantExchange/Transactionstatus">
+                                <div class="form-group">
+
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <label class="input-group-text"><i class="fa fa-barcode"></i></label>
+                                        </div>
+                                        <input name="id" style="font-size:0.8em;" type="text" class="form-control" placeholder="شناسه تراکنش">
+
+
+
+                                    </div>
+
+                                </div>
+                                <button class="btn-success btn-block btn-lg border-0" type="submit">جستجو</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section customMarkups{
+    <div class="bg_icons"></div>
+}

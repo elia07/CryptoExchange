@@ -1,0 +1,265 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FinaryModelStoreContainer" CdmEntityContainer="FinaryEntities">
+    <EntitySetMapping Name="Admin">
+      <EntityTypeMapping TypeName="FinaryModel.Admin">
+        <MappingFragment StoreEntitySet="Admin">
+          <ScalarProperty Name="xSalt" ColumnName="xSalt" />
+          <ScalarProperty Name="xIsActive" ColumnName="xIsActive" />
+          <ScalarProperty Name="xType" ColumnName="xType" />
+          <ScalarProperty Name="xName" ColumnName="xName" />
+          <ScalarProperty Name="xPassword" ColumnName="xPassword" />
+          <ScalarProperty Name="xEmail" ColumnName="xEmail" />
+          <ScalarProperty Name="xID" ColumnName="xID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AdminRole">
+      <EntityTypeMapping TypeName="FinaryModel.AdminRole">
+        <MappingFragment StoreEntitySet="AdminRole">
+          <ScalarProperty Name="xCrudPermission" ColumnName="xCrudPermission" />
+          <ScalarProperty Name="xSectionType" ColumnName="xSectionType" />
+          <ScalarProperty Name="xAdminID" ColumnName="xAdminID" />
+          <ScalarProperty Name="xID" ColumnName="xID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Exchange">
+      <EntityTypeMapping TypeName="FinaryModel.Exchange">
+        <MappingFragment StoreEntitySet="Exchange">
+          <ScalarProperty Name="xRefferalShare" ColumnName="xRefferalShare" />
+          <ScalarProperty Name="xRefferalSharePercent" ColumnName="xRefferalSharePercent" />
+          <ScalarProperty Name="xWatchDate" ColumnName="xWatchDate" />
+          <ScalarProperty Name="xStatus" ColumnName="xStatus" />
+          <ScalarProperty Name="xDate" ColumnName="xDate" />
+          <ScalarProperty Name="xComissionPercent" ColumnName="xComissionPercent" />
+          <ScalarProperty Name="xComission" ColumnName="xComission" />
+          <ScalarProperty Name="xApiComissionPercent" ColumnName="xApiComissionPercent" />
+          <ScalarProperty Name="xApiComission" ColumnName="xApiComission" />
+          <ScalarProperty Name="xPaymentTXID" ColumnName="xPaymentTXID" />
+          <ScalarProperty Name="xToAmount" ColumnName="xToAmount" />
+          <ScalarProperty Name="xFromAmount" ColumnName="xFromAmount" />
+          <ScalarProperty Name="xToCurrency" ColumnName="xToCurrency" />
+          <ScalarProperty Name="xFormCurrency" ColumnName="xFormCurrency" />
+          <ScalarProperty Name="xApiRequestID" ColumnName="xApiRequestID" />
+          <ScalarProperty Name="xExchangeType" ColumnName="xExchangeType" />
+          <ScalarProperty Name="xWithdrawalID" ColumnName="xWithdrawalID" />
+          <ScalarProperty Name="xFacilitatorID" ColumnName="xFacilitatorID" />
+          <ScalarProperty Name="xRialTransactionID" ColumnName="xRialTransactionID" />
+          <ScalarProperty Name="xUserID" ColumnName="xUserID" />
+          <ScalarProperty Name="xID" ColumnName="xID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FacilitatorTransaction">
+      <EntityTypeMapping TypeName="FinaryModel.FacilitatorTransaction">
+        <MappingFragment StoreEntitySet="FacilitatorTransaction">
+          <ScalarProperty Name="xDetail" ColumnName="xDetail" />
+          <ScalarProperty Name="xOrderID" ColumnName="xOrderID" />
+          <ScalarProperty Name="xID" ColumnName="xID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FileData">
+      <EntityTypeMapping TypeName="FinaryModel.FileData">
+        <MappingFragment StoreEntitySet="FileData">
+          <ScalarProperty Name="xIsThumbnail" ColumnName="xIsThumbnail" />
+          <ScalarProperty Name="xData" ColumnName="xData" />
+          <ScalarProperty Name="xSystemnFileID" ColumnName="xSystemnFileID" />
+          <ScalarProperty Name="xID" ColumnName="xID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LoginHistory">
+      <EntityTypeMapping TypeName="FinaryModel.LoginHistory">
+        <MappingFragment StoreEntitySet="LoginHistory">
+          <ScalarProperty Name="xRayID" ColumnName="xRayID" />
+          <ScalarProperty Name="xFraudDetected" ColumnName="xFraudDetected" />
+          <ScalarProperty Name="xUserAgent" ColumnName="xUserAgent" />
+          <ScalarProperty Name="xDeviceID" ColumnName="xDeviceID" />
+          <ScalarProperty Name="xIP" ColumnName="xIP" />
+          <ScalarProperty Name="xDate" ColumnName="xDate" />
+          <ScalarProperty Name="xUserID" ColumnName="xUserID" />
+          <ScalarProperty Name="xID" ColumnName="xID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PrivateMessage">
+      <EntityTypeMapping TypeName="FinaryModel.PrivateMessage">
+        <MappingFragment StoreEntitySet="PrivateMessage">
+          <ScalarProperty Name="xSendDate" ColumnName="xSendDate" />
+          <ScalarProperty Name="xUserReadDate" ColumnName="xUserReadDate" />
+          <ScalarProperty Name="xMessage" ColumnName="xMessage" />
+          <ScalarProperty Name="xTitle" ColumnName="xTitle" />
+          <ScalarProperty Name="xUserID" ColumnName="xUserID" />
+          <ScalarProperty Name="xID" ColumnName="xID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RefferalShareHistory">
+      <EntityTypeMapping TypeName="FinaryModel.RefferalShareHistory">
+        <MappingFragment StoreEntitySet="RefferalShareHistory">
+          <ScalarProperty Name="xDate" ColumnName="xDate" />
+          <ScalarProperty Name="xValue" ColumnName="xValue" />
+          <ScalarProperty Name="xFromCurrency" ColumnName="xFromCurrency" />
+          <ScalarProperty Name="xFromUserID" ColumnName="xFromUserID" />
+          <ScalarProperty Name="xUserID" ColumnName="xUserID" />
+          <ScalarProperty Name="xID" ColumnName="xID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RefferalWallet">
+      <EntityTypeMapping TypeName="FinaryModel.RefferalWallet">
+        <MappingFragment StoreEntitySet="RefferalWallet">
+          <ScalarProperty Name="xValue" ColumnName="xValue" />
+          <ScalarProperty Name="xCurrency" ColumnName="xCurrency" />
+          <ScalarProperty Name="xUserID" ColumnName="xUserID" />
+          <ScalarProperty Name="xID" ColumnName="xID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RefferalWithdrawal">
+      <EntityTypeMapping TypeName="FinaryModel.RefferalWithdrawal">
+        <MappingFragment StoreEntitySet="RefferalWithdrawal">
+          <ScalarProperty Name="xDate" ColumnName="xDate" />
+          <ScalarProperty Name="xDescription" ColumnName="xDescription" />
+          <ScalarProperty Name="xWalletAddress" ColumnName="xWalletAddress" />
+          <ScalarProperty Name="xStatus" ColumnName="xStatus" />
+          <ScalarProperty Name="xCurrency" ColumnName="xCurrency" />
+          <ScalarProperty Name="xUserID" ColumnName="xUserID" />
+          <ScalarProperty Name="xID" ColumnName="xID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RialGateway">
+      <EntityTypeMapping TypeName="FinaryModel.RialGateway">
+        <MappingFragment StoreEntitySet="RialGateway">
+          <ScalarProperty Name="xComissionPercent" ColumnName="xComissionPercent" />
+          <ScalarProperty Name="xLastSuccessTransactionDate" ColumnName="xLastSuccessTransactionDate" />
+          <ScalarProperty Name="xTodayTotalTransactionAmounts" ColumnName="xTodayTotalTransactionAmounts" />
+          <ScalarProperty Name="xIsPrimary" ColumnName="xIsPrimary" />
+          <ScalarProperty Name="xConfig" ColumnName="xConfig" />
+          <ScalarProperty Name="xIsActive" ColumnName="xIsActive" />
+          <ScalarProperty Name="xType" ColumnName="xType" />
+          <ScalarProperty Name="xName" ColumnName="xName" />
+          <ScalarProperty Name="xID" ColumnName="xID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RialTransaction">
+      <EntityTypeMapping TypeName="FinaryModel.RialTransaction">
+        <MappingFragment StoreEntitySet="RialTransaction">
+          <ScalarProperty Name="xInvoice_key" ColumnName="xInvoice_key" />
+          <ScalarProperty Name="xBankRef" ColumnName="xBankRef" />
+          <ScalarProperty Name="xComissionAmount" ColumnName="xComissionAmount" />
+          <ScalarProperty Name="xComissionPercent" ColumnName="xComissionPercent" />
+          <ScalarProperty Name="xPaymentInfo" ColumnName="xPaymentInfo" />
+          <ScalarProperty Name="xVerified" ColumnName="xVerified" />
+          <ScalarProperty Name="xAmount" ColumnName="xAmount" />
+          <ScalarProperty Name="xDate" ColumnName="xDate" />
+          <ScalarProperty Name="xGatewayID" ColumnName="xGatewayID" />
+          <ScalarProperty Name="xUserID" ColumnName="xUserID" />
+          <ScalarProperty Name="xID" ColumnName="xID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Setting">
+      <EntityTypeMapping TypeName="FinaryModel.Setting">
+        <MappingFragment StoreEntitySet="Setting">
+          <ScalarProperty Name="xValue" ColumnName="xValue" />
+          <ScalarProperty Name="xKey" ColumnName="xKey" />
+          <ScalarProperty Name="xID" ColumnName="xID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Signal">
+      <EntityTypeMapping TypeName="FinaryModel.Signal">
+        <MappingFragment StoreEntitySet="Signal">
+          <ScalarProperty Name="xDetail" ColumnName="xDetail" />
+          <ScalarProperty Name="xDate" ColumnName="xDate" />
+          <ScalarProperty Name="xID" ColumnName="xID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SystemFile">
+      <EntityTypeMapping TypeName="FinaryModel.SystemFile">
+        <MappingFragment StoreEntitySet="SystemFile">
+          <ScalarProperty Name="xIsActive" ColumnName="xIsActive" />
+          <ScalarProperty Name="xMD5" ColumnName="xMD5" />
+          <ScalarProperty Name="xAddingDate" ColumnName="xAddingDate" />
+          <ScalarProperty Name="xFileName" ColumnName="xFileName" />
+          <ScalarProperty Name="xContentType" ColumnName="xContentType" />
+          <ScalarProperty Name="xFileExtention" ColumnName="xFileExtention" />
+          <ScalarProperty Name="xID" ColumnName="xID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User">
+      <EntityTypeMapping TypeName="FinaryModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="xTotalInvitedUsers" ColumnName="xTotalInvitedUsers" />
+          <ScalarProperty Name="xUserValidationProgress" ColumnName="xUserValidationProgress" />
+          <ScalarProperty Name="xSubscriptionExpireDate" ColumnName="xSubscriptionExpireDate" />
+          <ScalarProperty Name="xSubscriptionType" ColumnName="xSubscriptionType" />
+          <ScalarProperty Name="xTodayRialAmount" ColumnName="xTodayRialAmount" />
+          <ScalarProperty Name="xMaxDailyRialAmount" ColumnName="xMaxDailyRialAmount" />
+          <ScalarProperty Name="xInviter" ColumnName="xInviter" />
+          <ScalarProperty Name="xRefferalSharePercent" ColumnName="xRefferalSharePercent" />
+          <ScalarProperty Name="xInviteID" ColumnName="xInviteID" />
+          <ScalarProperty Name="xTetherWallet" ColumnName="xTetherWallet" />
+          <ScalarProperty Name="xRialWallet" ColumnName="xRialWallet" />
+          <ScalarProperty Name="xLastSendSmsDate" ColumnName="xLastSendSmsDate" />
+          <ScalarProperty Name="xLastSendEmailDate" ColumnName="xLastSendEmailDate" />
+          <ScalarProperty Name="xCellphoneActivationCode" ColumnName="xCellphoneActivationCode" />
+          <ScalarProperty Name="xActivationCodeExpireAt" ColumnName="xActivationCodeExpireAt" />
+          <ScalarProperty Name="xActivationCode" ColumnName="xActivationCode" />
+          <ScalarProperty Name="xLastSigninDate" ColumnName="xLastSigninDate" />
+          <ScalarProperty Name="xSignupDate" ColumnName="xSignupDate" />
+          <ScalarProperty Name="xCellphoneValidated" ColumnName="xCellphoneValidated" />
+          <ScalarProperty Name="xTelValidated" ColumnName="xTelValidated" />
+          <ScalarProperty Name="xIsNationalIDValidated" ColumnName="xIsNationalIDValidated" />
+          <ScalarProperty Name="xIsEmailValidated" ColumnName="xIsEmailValidated" />
+          <ScalarProperty Name="xNationalIDNumber" ColumnName="xNationalIDNumber" />
+          <ScalarProperty Name="xNationalIDImage" ColumnName="xNationalIDImage" />
+          <ScalarProperty Name="xDescription" ColumnName="xDescription" />
+          <ScalarProperty Name="xIsActive" ColumnName="xIsActive" />
+          <ScalarProperty Name="xSalt" ColumnName="xSalt" />
+          <ScalarProperty Name="xPassword" ColumnName="xPassword" />
+          <ScalarProperty Name="xTel" ColumnName="xTel" />
+          <ScalarProperty Name="xCellphone" ColumnName="xCellphone" />
+          <ScalarProperty Name="xEmail" ColumnName="xEmail" />
+          <ScalarProperty Name="xFullName" ColumnName="xFullName" />
+          <ScalarProperty Name="xID" ColumnName="xID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserBankAccount">
+      <EntityTypeMapping TypeName="FinaryModel.UserBankAccount">
+        <MappingFragment StoreEntitySet="UserBankAccount">
+          <ScalarProperty Name="xIsVerified" ColumnName="xIsVerified" />
+          <ScalarProperty Name="xAccountNumber" ColumnName="xAccountNumber" />
+          <ScalarProperty Name="xShebaNumber" ColumnName="xShebaNumber" />
+          <ScalarProperty Name="xCartNumber" ColumnName="xCartNumber" />
+          <ScalarProperty Name="xBankType" ColumnName="xBankType" />
+          <ScalarProperty Name="xUserID" ColumnName="xUserID" />
+          <ScalarProperty Name="xID" ColumnName="xID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Withdrawal">
+      <EntityTypeMapping TypeName="FinaryModel.Withdrawal">
+        <MappingFragment StoreEntitySet="Withdrawal">
+          <ScalarProperty Name="xWithdrawalCost" ColumnName="xWithdrawalCost" />
+          <ScalarProperty Name="xSettlementDate" ColumnName="xSettlementDate" />
+          <ScalarProperty Name="xDescription" ColumnName="xDescription" />
+          <ScalarProperty Name="xStatus" ColumnName="xStatus" />
+          <ScalarProperty Name="xAmount" ColumnName="xAmount" />
+          <ScalarProperty Name="xDate" ColumnName="xDate" />
+          <ScalarProperty Name="xUserBankAccountID" ColumnName="xUserBankAccountID" />
+          <ScalarProperty Name="xUserID" ColumnName="xUserID" />
+          <ScalarProperty Name="xID" ColumnName="xID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

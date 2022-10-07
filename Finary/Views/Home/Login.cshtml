@@ -1,0 +1,139 @@
+﻿@using BotDetect.Web.Mvc;
+@{
+    Layout = "~/Views/Shared/PublicLayout.cshtml";
+}
+
+@section TopMenu{
+    <ul class="navbar-nav">
+    </ul>
+}
+
+<div class="section-padding">
+    <div class="container h-100">
+        <div class="row justify-content-center h-100 align-items-center">
+            <div class="col-xl-4 col-md-6">
+                <div class="auth-form card">
+                    <div class="card-header justify-content-center">
+                        <h4 class="card-title">ورود</h4>
+                    </div>
+                    <div class="card-body">
+                        <form method="post" id="Login" name="Login" data-parsley-validate>
+                            <div class="form-group">
+                                <label>پست الکترونیک</label>
+                                <input type="email" class="form-control" placeholder="hello@example.com" name="email" data-parsley-type="email" data-trigger="change" required>
+                            </div>
+                            <div class="form-group">
+                                <label>رمزعبور</label>
+                                <input type="password" class="form-control" placeholder="Password" name="password" data-parsley-minlength="5" data-trigger="change" required>
+                            </div>
+
+                            @{
+                                MvcCaptcha CaptchaLogin = new MvcCaptcha("CaptchaLogin");
+
+                            }
+                            <div class="form-group">
+                                <label>کد امنیتی</label>
+                                @Html.Captcha(CaptchaLogin) <br>
+                                @Html.TextBox("CaptchaLogin", null, new { @class = "form-control", @PlaceHolder = "کد امنیتی", @id = "CaptchaLogin", @autocomplete = "off", @required = "" })
+                            </div>
+
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-success btn-block">ورود</button>
+                            </div>
+                            <div class="form-row d-flex justify-content-between mt-4 mb-2">
+                                <div class="form-group mb-0">
+                                    <a href="">بازیابی رمزعبور</a>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="new-account mt-3">
+                            <p>
+                                هنوز ثبت نام نکرده اید ؟ <a class="text-primary" href="signup.html">
+                                ثبت نام
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section customMarkups{
+    <div class="bg_icons"></div>
+}
+
+@section scripts{
+    <script type="text/javascript">
+        $("#Login").submit(function (event) {
+    event.preventDefault();
+    if (!$("#Login").parsley().validate()) {
+        return;
+    }
+    $.ajax({
+        headers: { 'RequestVerificationToken': window.TokenHeaderValue },
+        url: "/Home/Login", data: $(this).serialize(), type: "POST", dataType: 'json',
+        error: function (request, status, error) {
+            unhanddleError();
+        },
+        success: function (e) {
+            if (e.CustomFields != undefined && e.CustomFields.Redirect != undefined) {
+                window.location.href = e.CustomFields.Redirect;
+                return;
+            }
+            if (!e.Status) {
+                $("#CaptchaLogin_ReloadIcon").click();
+
+                if (e.Message.includes("wrong")) {
+                    window.location.reload();
+                }
+                else {
+
+                    Swal({
+                        title: e.CustomFields.title,
+                        text: e.Message,
+                        type: 'error',
+                        confirmButtonText: e.CustomFields.confirmButtonText
+                    });
+                }
+
+            }
+            else {
+                if (e.CustomFields != undefined && e.CustomFields.unfilterDomainForThisuser != undefined) {
+                    Swal({
+                        title: e.CustomFields.title,
+                        text: e.Message + "\r\n" + e.CustomFields.unfilterDomainForThisuser,
+                        type: 'success',
+                        showConfirmButton: true,
+                        onClose: function () { window.location.href = window.ProfileAddress; }
+                    });
+                }
+                else {
+                    if (e.Message.includes("wrong")) {
+                        window.location.reload();
+                    }
+                    else {
+                        Swal({
+                            title: e.CustomFields.title,
+                            text: e.Message,
+                            type: 'success',
+                            timer: 2000,
+                            showConfirmButton: false,
+                            onClose: function () { window.location.href = window.ProfileAddress; }
+                        });
+
+                    }
+                   
+                }
+                
+                
+            }
+        }
+    });
+
+});
+    </script>
+}

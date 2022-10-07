@@ -1,0 +1,438 @@
+﻿
+@{
+    Layout = "~/Views/Shared/PublicLayout.cshtml";
+}
+
+@section TopMenu{
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" href="/">تبادل سریع</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/InstantExchange/SearchTransaction">جستجوی تراکنش</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#" data-scroll-nav="1">بازار</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#" data-scroll-nav="2">وجه تمایز</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#" data-scroll-nav="3">تراکنش های ریالی</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#" data-scroll-nav="4">دسترسی به ما</a>
+        </li>
+    </ul>
+}
+<div class="intro section-padding position-relative" id="intro" data-scroll-index="0">
+    <div class="container">
+        <div class="row align-items-center justify-content-between">
+            <div class="col-xl-6 col-md-6">
+                <div class="intro-content">
+                    <h2> متنوع ترین پلتفرم خرید ، فروش و تبادل <b>رمز ارز</b></h2>
+                    <p>پشتیبانی بیش از 180 رمزارز</p>
+                    <p>تبدیل رمزارز به دیگر رمزارز ها بدون احراز هویت و ثبت نام</p>
+                    <p>ریال به رمزارمز ، رمزارز به ریال به زودی</p>
+                    <a target="_blank" href="https://guarda.co" class="btn">دریافت کیف پول پیشنهادی <i class="fa fa-qrcode"></i></a>
+                </div>
+            </div>
+            <div class="col-xl-4 col-md-6 py-md-5">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="buy-sell-widget">
+                            <ul class="nav nav-tabs">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-toggle="tab"
+                                       href="#classic">ریت کلاسیک</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#fixedRate">ریت ثابت</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content tab-content-default">
+                                <div class="tab-pane fade show active" id="classic" role="tabpanel">
+                                    <div class="buy-sell-widget">
+                                        <form id="ClassicExchnage" class="currency_validate">
+                                            <div class="form-group">
+                                                <label class="mr-sm-2">ارز مبدا</label>
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                        <label class="input-group-text"><i class="cc NVC-alt"></i></label>
+                                                    </div>
+                                                    <select name='currency' id="classic_from_pair" class="form-control selectpicker" data-live-search="true">
+                                                    </select>
+                                                </div>
+                                                <label id="ClassicExchnageRateInfo" class="mr-sm-2" style="direction:ltr"></label><a href="#">به نرخ لحظه</a>
+                                            </div>
+                                            <label class="mr-sm-2" style="direction:ltr">بدون هرگونه کارمزد اضافی</label>
+                                            <div class="form-group">
+                                                <label class="mr-sm-2">ارز مقصد</label>
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                        <label class="input-group-text"><i class="cc NVC-alt"></i></label>
+                                                    </div>
+                                                    <select name='currency' id="classic_to_pair" class="form-control selectpicker" data-live-search="true">
+                                                    </select>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="mr-sm-2">مقدار ارز مبدا را وارد کنید</label>
+                                                <div class="input-group">
+                                                    <input type="text" id="classic_from_amount" class="form-control"
+                                                           placeholder="0">
+                                                    <input type="text" id="classic_to_amount" class="form-control"
+                                                           placeholder="0" readonly>
+                                                </div>
+                                                <div class="d-flex justify-content-between mt-3">
+                                                    <p class="mb-0">ارسال می کنید</p>
+                                                    <h6 class="mb-0">دریافت می کنید</h6>
+                                                </div>
+                                            </div>
+                                            <button type="submit" name="submit" class="btn btn-success btn-block">
+                                                <i class="cc STR-alt"></i>
+                                                تبدیل
+                                            </button>
+
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="fixedRate" role="tabpanel">
+                                    <div class="buy-sell-widget">
+                                        <form id="FixedExchnage" class="currency_validate">
+                                            <div class="form-group">
+                                                <label class="mr-sm-2">ارز مبدا</label>
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                        <label class="input-group-text"><i class="cc NVC-alt"></i></label>
+                                                    </div>
+                                                    <select name='currency' id="fixed_from_pair" class="form-control selectpicker" data-live-search="true">
+                                                    </select>
+                                                </div>
+                                                <label id="FixedExchnageRateInfo" class="mr-sm-2" style="direction:ltr">مینیمم 0.003 | ماکزیمم 1.5 BTC</label><a href="#">کارمزد ثابت</a>
+                                            </div>
+                                            <label class="mr-sm-2" style="direction:ltr">بدون هرگونه کارمزد اضافی</label>
+                                            <div class="form-group">
+                                                <label class="mr-sm-2">ارز مقصد</label>
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                        <label class="input-group-text"><i class="cc NVC-alt"></i></label>
+                                                    </div>
+                                                    <select name='currency' id="fixed_to_pair" class="form-control selectpicker" data-live-search="true">
+                                                    </select>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="mr-sm-2">مقدار ارز مبدا را وارد کنید</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control"
+                                                           placeholder="0">
+                                                    <input type="text" class="form-control"
+                                                           placeholder="0" readonly>
+                                                </div>
+                                                <div class="d-flex justify-content-between mt-3">
+                                                    <p class="mb-0">ارسال می کنید</p>
+                                                    <h6 class="mb-0">دریافت می کنید</h6>
+                                                </div>
+                                            </div>
+                                            <button type="submit" name="submit" class="btn btn-success btn-block">
+                                                <i class="cc STR-alt"></i>
+                                                تبدیل
+                                            </button>
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="market page-section" data-scroll-index="1" style="padding:20px;">
+    <div class="row">
+        <div class="col-sm-12 col-md-3 col-lg-3">
+            <script type="text/javascript" src="https://files.coinmarketcap.com/static/widget/currency.js"></script><div class="coinmarketcap-currency-widget" data-currencyid="1" data-base="USD" data-secondary="" data-ticker="true" data-rank="true" data-marketcap="true" data-volume="true" data-statsticker="true" data-stats="USD"></div>
+        </div>
+        <div class="col-sm-12 col-md-3 col-lg-3">
+            <script type="text/javascript" src="https://files.coinmarketcap.com/static/widget/currency.js"></script><div class="coinmarketcap-currency-widget" data-currencyid="1027" data-base="USD" data-secondary="" data-ticker="true" data-rank="true" data-marketcap="true" data-volume="true" data-statsticker="true" data-stats="USD"></div>
+        </div>
+        <div class="col-sm-12 col-md-3 col-lg-3">
+            <script type="text/javascript" src="https://files.coinmarketcap.com/static/widget/currency.js"></script><div class="coinmarketcap-currency-widget" data-currencyid="1958" data-base="USD" data-secondary="" data-ticker="true" data-rank="true" data-marketcap="true" data-volume="true" data-statsticker="true" data-stats="USD"></div>
+        </div>
+        <div class="col-sm-12 col-md-3 col-lg-3">
+            <script type="text/javascript" src="https://files.coinmarketcap.com/static/widget/currency.js"></script><div class="coinmarketcap-currency-widget" data-currencyid="825" data-base="USD" data-secondary="" data-ticker="true" data-rank="true" data-marketcap="true" data-volume="true" data-statsticker="true" data-stats="USD"></div>
+        </div>
+    </div>
+
+
+</div>
+
+
+
+<div class="market page-section" data-scroll-index="2" style="padding:20px;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-6">
+                <div class="section_heading">
+                    <span>بیشتر آشنا شوید</span>
+                    <h3>صرافی Finary (fiat to binary)</h3>
+                    <p>تبادل بیتکوین ، اتریوم و صد ها رمزارز دیگر فقط در چند دقیقه</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="market-table">
+                            <div style="height:1849px; background-color: #FFFFFF; overflow:hidden; box-sizing: border-box; border: 1px solid #56667F; border-radius: 4px; text-align: right; line-height:14px; font-size: 12px; font-feature-settings: normal; text-size-adjust: 100%; box-shadow: inset 0 -20px 0 0 #56667F; padding: 0px; margin: 0px; width: 100%;"><div style="height:1829px; padding:0px; margin:0px; width: 100%;"><iframe src="https://widget.coinlib.io/widget?type=full_v2&theme=light&cnt=30&pref_coin_id=1505&graph=yes" width="100%" height="1825px" scrolling="auto" marginwidth="0" marginheight="0" frameborder="0" border="0" style="border:0;margin:0;padding:0;"></iframe></div><div style="color: #FFFFFF; line-height: 14px; font-weight: 400; font-size: 11px; box-sizing: border-box; padding: 2px 6px; width: 100%; font-family: Verdana, Tahoma, Arial, sans-serif;"><a href="https://coinlib.io" target="_blank" style="font-weight: 500; color: #FFFFFF; text-decoration:none; font-size:11px">Cryptocurrency Prices</a>&nbsp;by Coinlib</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="features" style="padding:20px;">
+    <div class="container">
+        <div class="row py-lg-5 justify-content-center">
+            <div class="col-xl-6">
+                <div class="section_heading">
+                    <h3>مشتری مداری وجه تمایز اصلی ماست</h3>
+                    <p>دیگر وجوه تمایز صرافی ارز دیجیتال Finary چیست؟</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="features-content">
+                    <span><i class="fa fa-shield"></i></span>
+                    <h4>کارمزد فوق رقابتی</h4>
+                    <p>فقط 0.4%  رمزارز به رمزارز</p>
+
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="features-content">
+                    <span><i class="fa fa-cubes"></i></span>
+                    <h4>پشتیبانی بالغ از 150 رمزارز</h4>
+                    <p>پشتیبانی بیش از 10000 جفت رمزارز</p>
+
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="features-content">
+                    <span><i class="fa fa-life-ring"></i></span>
+                    <h4>فروش های فوق العاده و باشگاه مشتریان</h4>
+                    <p>کاربران VIP صرافی Finary درصد تخفیف های کارمزدی و گاها قیمتی دریافت خواهند کرد</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="portfolio" data-scroll-index="3" style="padding:20px;">
+    <div class="container">
+        <div class="row py-lg-5 justify-content-center">
+            <div class="col-xl-6">
+                <div class="section_heading">
+                    <span>پشتیبانی 24/7</span>
+                    <h3>ریال به رمزارز ، رمزارز به ریال با احراز هویت</h3>
+                    <p>اطلاعات شما به صورت امن نزد Finary نگهداری خواهد شد ، این اطلاعات در صورت تقاضا از سوی پلیس فتا و یا قوه قضاییه در اختیار آنها قرار خواهد گرفت </p>
+                </div>
+            </div>
+        </div>
+        <div class="row align-items-center">
+            <div class="col-xl-5 col-md-6">
+                <div class="portfolio_list">
+                    <div class="media">
+                        <span class="port-icon"> <i class="la la-bar-chart"></i></span>
+                        <div class="media-body">
+                            <h4>کارمزد های شفاف</h4>
+                            <p>صرافی Finary برای هرچه شفاف تر بودن کارمزد ها و ارقام نهایی دریافتی از سمت کاربر دو روش کارمزد ثابت و کلاسیک را در اختیار کاربران قرار خواهد داد</p>
+                        </div>
+                    </div>
+                    <div class="media">
+                        <span class="port-icon"> <i class="la la-calendar-check-o"></i></span>
+                        <div class="media-body">
+                            <h4>Recurring buys</h4>
+                            <p>
+                                Invest in cryptocurrency slowly over time by scheduling buys daily, weekly, or
+                                monthly.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="media">
+                        <span class="port-icon"> <i class="la la-lock"></i></span>
+                        <div class="media-body">
+                            <h4>تایید دومرحله ای</h4>
+                            <p>
+                                برای هرچه امن تر بودن تراکنش ها در فاینری تاییدهای دو مرحله ای پست الکترونیکی،پیامکی و OTP در اختیار کاربران خواهد بود
+                            </p>
+                        </div>
+                    </div>
+                    <div class="media">
+                        <span class="port-icon"> <i class="la la-android"></i></span>
+                        <div class="media-body">
+                            <h4>اپلیکشن های موبایل</h4>
+                            <p>
+                                به زودی <a href="#">Android</a> و
+                                <a href="#">iOS</a>.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-7 col-md-6">
+                <div class="portfolio_img">
+                    <img src="~/Resources/images/portfolio.png" alt="" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="contact-form" data-scroll-index="5" style="padding:20px;">
+    <div class="container">
+        <div class="row py-lg-5 justify-content-center">
+            <div class="col-xl-6">
+                <div class="section_heading">
+                    <span>دسترسی به ما</span>
+                    <h3>شنبه تا پنجشنبه 8 صبح الی 5  بعد از ظهر ، پشتیبانی کاربران 24/7</h3>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-4 col-md-4 col-sm-4">
+                <div class="info-list">
+                    <h4 class="mb-3">آدرس</h4>
+                    <ul>
+                        <li><i class="fa fa-map-marker"></i> ایران ، تهران ، فرمانیه ، تنگستان یکم ، خیابان علوی ، پلاک 4 ، طبقه اول</li>
+                        <li style="direction:ltr;"> (+98) 21 22713456 <i class="fa fa-phone"></i></li>
+                        <li style=""><i class="fa fa-envelope"></i> support@finary.ir</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xl-8 col-md-8 col-sm-8">
+                <div class="row">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d572.0329946328088!2d51.47098323955002!3d35.80220959069274!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8e05a84e482f75%3A0x1ea26456eaa78f9f!2z2LTYsdqp2Kog2b7YsdmG24zYp9mGINiv2LEg2b7Yp9ix2LPZhw!5e0!3m2!1sen!2sae!4v1601992582716!5m2!1sen!2sae" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+@section scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            InitCurrenciesDropboxes();
+            setInterval(InitSelectPickers, 5000);
+        });
+        function unhanddleError() {
+
+        }
+        function HandleClassic() {
+            var classic_from_pair = $('#classic_from_pair option:selected').val();
+            var classic_to_pair = $('#classic_to_pair option:selected').val();
+            if (classic_from_pair != "-1" && classic_to_pair != "-1" && parseFloat($("#classic_from_amount").val()) > 0) {
+                $.ajax({
+                    headers: { 'RequestVerificationToken': window.TokenHeaderValue },
+                    contentType: "application/json; charset=utf-8",
+                    url: "/InstantExchange/EstimatedExchangeAmount?amount=" + $("#classic_from_amount").val() + "&from_to=" + $('#classic_from_pair option:selected').val() + "_" + $('#classic_to_pair option:selected').val(), type: "Get", dataType: 'json',
+                    error: function (request, status, error) {
+                        unhanddleError();
+                    },
+                    success: function (e) {
+
+                        $("#classic_to_amount").val(e.estimatedAmount);
+                    }
+                })
+                $.ajax({
+                    headers: { 'RequestVerificationToken': window.TokenHeaderValue },
+                    contentType: "application/json; charset=utf-8",
+                    url: "/InstantExchange/EstimatedExchangeAmount?amount=1" + "&from_to=" + $('#classic_from_pair option:selected').val() + "_" + $('#classic_to_pair option:selected').val(), type: "Get", dataType: 'json',
+                    error: function (request, status, error) {
+                        unhanddleError();
+                    },
+                    success: function (e) {
+                        $("#ClassicExchnageRateInfo").text('1 ' + $('#classic_from_pair option:selected').val() + " ~ " + e.estimatedAmount + " " + $('#classic_to_pair option:selected').val());
+                    }
+                })
+
+            }
+            else {
+                $("#ClassicExchnageRateInfo").text('');
+            }
+        }
+        $('#classic_from_amount').on('keyup', function () {
+            HandleClassic();
+        });
+        $('#classic_from_pair').on('change', function () {
+            HandleClassic();
+        });
+        $('#classic_to_pair').on('change', function () {
+            HandleClassic();
+        });
+        $('#fixed_from_pair').on('change', function () {
+            var selected = $('#fixed_from_pair option:selected').val();
+            alert(selected);
+        });
+        $('#fixed_to_pair').on('change', function () {
+            var selected = $('#fixed_to_pair option:selected').val();
+            alert(selected);
+        });
+        function InitSelectPickers() {
+            $(".dropdown-toggle").each(function () {
+                $(this).addClass("form-control");
+            })
+        }
+        function InitCurrenciesDropboxes() {
+
+            GetAvailableCurrencies();
+        }
+        function GetAvailableCurrencies() {
+
+            $.ajax({
+                headers: { 'RequestVerificationToken': window.TokenHeaderValue },
+                url: "/InstantExchange/GetAvailableCurrencies", type: "Get", dataType: 'json',
+                error: function (request, status, error) {
+                    unhanddleError();
+                },
+                success: function (e) {
+                    $('select[name="currency"]').each(function () {
+                        $(this).html('');
+                        $(this).append('<option value="-1">انتخاب کنید</option>');
+                        var select = $(this);
+                        $.each(e, function (index, value) {
+                            $(select).append('<option value="' + value.ticker + '">' + value.name + '</option>');
+                        });
+
+                    });
+
+                }
+            })
+        }
+        $("#FixedExchnage").on("submit", function (e) {
+            e.preventDefault();
+
+            alert("FixedExchnage");
+        });
+        $("#ClassicExchnage").on("submit", function (e) {
+            e.preventDefault();
+            window.location = "/InstantExchange/StartExchange?amount=" + $("#classic_from_amount").val() + "&from_to=" + $('#classic_from_pair option:selected').val() + "_" + $('#classic_to_pair option:selected').val();
+        });
+    </script>
+}

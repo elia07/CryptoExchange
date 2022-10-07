@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{43163084-D9BE-416C-82FA-8651AB3A6010}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Finary.Core</RootNamespace>
+    <AssemblyName>Finary.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.11.29.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.11.29\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="LinqKit, Version=1.1.21.0, Culture=neutral, PublicKeyToken=bc217f8844052a91, processorArchitecture=MSIL">
+      <HintPath>..\packages\LinqKit.1.1.21\lib\net45\LinqKit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="RockCandy.Web.Framework.Core">
+      <HintPath>..\Libraries\RockCandy.Web.Framework.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="RockCandy.Web.Framework.Utilities">
+      <HintPath>..\Libraries\RockCandy.Web.Framework.Utilities.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Admin.cs">
+      <DependentUpon>Finary.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AdminRole.cs">
+      <DependentUpon>Finary.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Enumerations\RefferalWithdrawalStatus.cs" />
+    <Compile Include="Enumerations\ExchangeStatus.cs" />
+    <Compile Include="Enumerations\ExchangeType.cs" />
+    <Compile Include="Enumerations\AdminRoleSectionType.cs" />
+    <Compile Include="Enumerations\FinancialLogType.cs" />
+    <Compile Include="Enumerations\GatewayType.cs" />
+    <Compile Include="Enumerations\UserValidationProgress.cs" />
+    <Compile Include="Enumerations\WithdrawalStatusType.cs" />
+    <Compile Include="Enumerations\SubscriptionType.cs" />
+    <Compile Include="Enumerations\WithdrawalType .cs" />
+    <Compile Include="Exchange.cs">
+      <DependentUpon>Finary.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FacilitatorTransaction.cs">
+      <DependentUpon>Finary.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FileData.cs">
+      <DependentUpon>Finary.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Finary.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Finary.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Finary.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Finary.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Finary.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Finary.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="LoginHistory.cs">
+      <DependentUpon>Finary.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTO\ExchangeDTO.cs" />
+    <Compile Include="Models\DTO\UserDTO.cs" />
+    <Compile Include="Models\Setting.cs" />
+    <Compile Include="Partials\Admin.cs" />
+    <Compile Include="Partials\Gateway.cs" />
+    <Compile Include="Partials\SystemFile.cs" />
+    <Compile Include="Partials\User.cs" />
+    <Compile Include="Partials\Withdrawal.cs" />
+    <Compile Include="PrivateMessage.cs">
+      <DependentUpon>Finary.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RefferalShareHistory.cs">
+      <DependentUpon>Finary.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RefferalWallet.cs">
+      <DependentUpon>Finary.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RefferalWithdrawal.cs">
+      <DependentUpon>Finary.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repositories\AdminRepository.cs" />
+    <Compile Include="Repositories\AdminRoleRepository.cs" />
+    <Compile Include="Repositories\FileDataRepository.cs" />
+    <Compile Include="Repositories\RialGatewayRepository.cs" />
+    <Compile Include="Repositories\LoginHistoryRepository.cs" />
+    <Compile Include="Repositories\PrivateMessageRepository.cs" />
+    <Compile Include="Repositories\ExchangeRepository.cs" />
+    <Compile Include="Repositories\SettingRepository.cs" />
+    <Compile Include="Repositories\SystemFileRepository.cs" />
+    <Compile Include="Repositories\UserBankAccountRepository.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
+    <Compile Include="Repositories\WithdrawalRepository.cs" />
+    <Compile Include="RepositoryDefinition\GenericRepository.cs" />
+    <Compile Include="RepositoryDefinition\IGenericRepositoryAsync.cs" />
+    <Compile Include="RialGateway.cs">
+      <DependentUpon>Finary.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RialTransaction.cs">
+      <DependentUpon>Finary.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Setting.cs">
+      <DependentUpon>Finary.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Signal.cs">
+      <DependentUpon>Finary.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SystemFile.cs">
+      <DependentUpon>Finary.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User.cs">
+      <DependentUpon>Finary.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserBankAccount.cs">
+      <DependentUpon>Finary.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\CookieUtils.cs" />
+    <Compile Include="Utils\DateUtils.cs" />
+    <Compile Include="Utils\EncryptionUtils.cs" />
+    <Compile Include="Utils\IPUtils.cs" />
+    <Compile Include="Utils\PerfectMoney.cs" />
+    <Compile Include="Utils\SessionUtils.cs" />
+    <Compile Include="Utils\TConverter.cs" />
+    <Compile Include="Withdrawal.cs">
+      <DependentUpon>Finary.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Finary.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Finary.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="Finary.edmx.diagram">
+      <DependentUpon>Finary.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Finary.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Finary.Context.cs</LastGenOutput>
+      <DependentUpon>Finary.edmx</DependentUpon>
+    </Content>
+    <Content Include="Finary.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Finary.edmx</DependentUpon>
+      <LastGenOutput>Finary.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="MetaData\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

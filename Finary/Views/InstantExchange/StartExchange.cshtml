@@ -1,0 +1,630 @@
+﻿
+@{
+    ViewBag.Title = "StartExchange";
+    Layout = "~/Views/Shared/PublicLayout.cshtml";
+
+    double amount = 0;
+    if (ViewBag.amount != null)
+    {
+        amount = double.Parse(ViewBag.amount.ToString());
+    }
+}
+
+<div class="intro section-padding position-relative" id="intro" data-scroll-index="0">
+    <div class="container">
+        <div class="row justify-content-between">
+            <div class="col-xl-4 col-md-4">
+                <div class="card settings_menu">
+                    <div class="card-body">
+                        <ul>
+                            <li class="nav-item">
+                                <a id="navCompleteOrder" href="#" class="nav-link active">
+                                    <i class="la la-check-circle"></i>
+                                    <span>تکمیل اطلاعات</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="navCheckout" href="#" class="nav-link">
+                                    <i class="la la-circle"></i>
+                                    <span>تایید تبادل</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="la la-circle"></i>
+                                    <span>انجام تبادل</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-8 col-md-8">
+                <div class="card" id="CompleteOrderCard">
+                    <div class="card-body">
+                        <div class="buy-sell-widget">
+                            <ul class="nav nav-tabs">
+                                <li class="nav-item">
+                                    <a id="classicTab" class="nav-link active" data-toggle="tab"
+                                       href="#classic">ریت کلاسیک</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a id="fixedRateTab" class="nav-link" data-toggle="tab" href="#fixedRate">ریت ثابت</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content tab-content-default">
+                                <div class="tab-pane fade show active" id="classic" role="tabpanel">
+
+                                </div>
+                                <div class="tab-pane fade" id="fixedRate" role="tabpanel">
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="buy-sell-widget">
+                            <form id="completeOrderClassic" method="post" class="currency_validate completeOrder">
+                                <div class="form-group">
+                                    <label class="mr-sm-2">ارز مبدا</label>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text" style="min-width:60px;padding: 0px 10px;"><img id="classic_from_img" style="max-width:38px;" src="~/Resources/SVG-icons/@(ViewBag.from).svg" alt=""></div>
+                                        </div>
+                                        <select name='currency' id="classic_from_pair" class="form-control selectpicker" data-live-search="true">
+                                            @foreach (var item in DomainInfo.AvailableCurrencies.Select(x => x.Value).ToList().OrderBy(x => x.name))
+                                            {
+                                                <option value="@item.ticker">@item.ticker - @item.name</option>
+                                            }
+                                        </select>
+                                    </div>
+                                    <label id="ClassicExchnageRateInfo" class="mr-sm-2" style="direction:ltr"></label>
+                                    <label id="networkFee" class="mr-sm-2" style="direction:ltr"></label>
+                                    <a id="exchangeType" href="#">به نرخ لحظه</a>
+                                    <label class="mr-sm-2" style="float:left">بدون هرگونه کارمزد اضافی</label>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="mr-sm-2">ارز مقصد</label>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text" style="min-width:60px;padding: 0px 10px;"><img id="classic_to_img" style="max-width:38px;" src="~/Resources/SVG-icons/@(ViewBag.to).svg" alt=""></div>
+                                        </div>
+                                        <select name='currency' id="classic_to_pair" class="form-control selectpicker" data-live-search="true">
+                                            @foreach (var item in DomainInfo.AvailableCurrencies.Select(x => x.Value).ToList().OrderBy(x => x.name))
+                                            {
+                                                <option value="@item.ticker">@item.ticker - @item.name</option>
+                                            }
+                                        </select>
+                                    </div>
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="mr-sm-2">مقدار ارز مبدا را وارد کنید</label>
+                                    <label style="color:red;" id="amountValidationError" class="mr-sm-2"></label>
+                                    <div class="input-group">
+                                        <input type="text" id="classic_from_amount" class="form-control"
+                                               placeholder="0" value="@amount">
+                                        <input type="text" id="classic_to_amount" class="form-control"
+                                               placeholder="0" readonly>
+                                    </div>
+                                    <div class="d-flex justify-content-between mt-3">
+                                        <p class="mb-0">ارسال می کنید</p>
+                                        <p class="mb-0">دریافت می کنید</p>
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <label class="mr-sm-2">کیف پول مقصد را وارد کنید</label>
+                                    <a href="#" style="float:left">هنوز کیف پول ندارید ؟</a>
+                                    <label style="color:red;font-size:0.9rem;" id="addressValidationError" class="mr-sm-2"></label>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <label class="input-group-text"><i class="la la-qrcode"></i></label>
+                                        </div>
+                                        <input type="text" id="RecipientWallet" class="form-control">
+                                    </div>
+
+                                    <label style="color:orange;font-size:0.9rem;" class="mr-sm-2">در وارد کردن کیف پول مقصد دقت کنید ، در صورت بروز اشتباه رمزارز ارسال شده قابل بازگشت نمی باشد</label>
+
+                                </div>
+                                <div class="form-group">
+                                    <label class="mr-sm-2">کیف پول بازپرداخت را وارد کنید</label>
+                                    <label style="color:red;font-size:0.9rem;" id="refundAddressValidationError" class="mr-sm-2"></label>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <label class="input-group-text"><i class="la la-qrcode"></i></label>
+                                        </div>
+                                        <input type="text" id="RefundWallet" class="form-control">
+                                    </div>
+                                    <label style="color:orange;font-size:0.9rem;" class="mr-sm-2">در صورتی که در حین عملیات تبادل خطایی صورت گیرد رمزارز ارسالی شما به این کیف پول بازپرداخت می شود</label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="mr-sm-2">پست الکترونیک (اختیاری)</label>
+                                    <label style="color:red;font-size:0.9rem;" id="emailValidationError" class="mr-sm-2"></label>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <label class="input-group-text"><i class="la la-at"></i></label>
+                                        </div>
+                                        <input type="text" id="userEmail" class="form-control">
+                                    </div>
+                                    <label style="color:blue;font-size:0.9rem;" class="mr-sm-2">در صورتی که پست الکترونیک خود را وارد کنید ، اتمام عملیات تبادل را به اطلاع شما می رسانیم</label>
+                                </div>
+                                <button id="nextStep" type="submit" name="submit" class="btn btn-success btn-block">
+                                    <i class="cc STR-alt"></i>
+                                    مرحله بعد
+                                </button>
+
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div id="CheckoutCard" class="card" style="display:none;">
+                    <div class="card-header align-items-center">
+                        <h5 class="mr-sm-2" style="color:#3636d8;width: 100%;text-align: center;">لطفا اطلاعات زیر را بررسی نموده و تایید کنید</h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="CheckoutForm" method="post" action="/InstantExchange/CreateTransaction" class="currency_validate">
+
+                            <div class="form-group">
+                                <label class="mr-sm-2" style="display: block; margin: 0px; color: #3636d8;">نرخ تبادل(برابری)</label>
+                                <label style="font-size:2vw;direction:ltr" id="checkoutRate" class="mr-sm-2"></label>
+                            </div>
+                            <div class="form-group">
+                                <label class="mr-sm-2" style="display: block; margin: 0px; color: #3636d8;">هزینه شبکه</label>
+                                <label id="checkoutNetworkFee" class="mr-sm-2" style="direction:ltr"></label>
+                            </div>
+                            <div class="form-group">
+                                <label class="mr-sm-2" style="display: block; margin: 0px; color: #3636d8;">ارسال می کنید</label>
+                                <label style="font-size:2vw;" id="checkoutSendAmount" class="mr-sm-2"></label>
+                                <label style="font-size:2vw;" id="checkoutFromCurrency" class="mr-sm-2"></label>
+
+                            </div>
+                            <div class="form-group">
+                                <label class="mr-sm-2" style="display: block; margin: 0px; color: #3636d8;">دریافت می کنید</label>
+                                <label style="font-size:2vw;" id="checkoutRecieveAmount" class="mr-sm-2"></label>
+                                <label style="font-size:2vw;" id="checkoutToCuurency" class="mr-sm-2"></label>
+                                <label style="font-size:2vw;" class="mr-sm-2">~</label>
+
+                            </div>
+                            <div class="form-group">
+                                <label class="mr-sm-2" style="display: block; margin: 0px; color: #3636d8;">زمان تخمینی تراکنش</label>
+                                <label style="font-size:2vw;" id="checkoutTime" class="mr-sm-2"></label>
+
+                            </div>
+                            <div class="form-group">
+                                <label class="mr-sm-2" style="display: block; margin: 0px; color: #3636d8;">کیف پول مقصد</label>
+                                <label id="checkoutWallet" style="font-size:2vw;" class="mr-sm-2"></label>
+                            </div>
+                            <div class="form-group">
+                                <label class="mr-sm-2" style="display: block; margin: 0px; color: #3636d8;">کیف پول بازپرداخت</label>
+                                <label id="checkoutRefundWallet" style="font-size:2vw;" class="mr-sm-2"></label>
+                            </div>
+                            <div class="form-group">
+                                <label class="toggle">
+                                    <input id="UserValidatedCheckbox" class="toggle-checkbox" type="checkbox">
+                                    <div class="toggle-switch"></div>
+                                    <span class="toggle-label">
+                                        اطلاعات فاکتور صحیح می باشد
+                                    </span>
+                                </label>
+                            </div>
+                            <div class="form-group mb-0">
+                                <label class="toggle">
+                                    <input id="TermsCheckbox" class="toggle-checkbox" type="checkbox">
+                                    <div class="toggle-switch"></div>
+                                    <span class="toggle-label">
+                                        <a href="#">قوانین و مقررات</a> را خوانده ام و پذیرفتم
+                                    </span>
+                                </label>
+                            </div>
+
+                            <hr>
+                            <div class="row">
+                                <div class="col-xl-6 col-md-6">
+                                    <button id="confirmButton" type="submit" name="submit" class="btn btn-success btn-block" disabled>
+                                        تایید
+                                    </button>
+                                </div>
+                                <div class="col-xl-6 col-md-6">
+                                    <button type="button" onclick="Back();" class="btn btn-danger btn-block">
+                                        باز گشت
+                                    </button>
+                                </div>
+
+
+                            </div>
+
+
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section customMarkups{
+    <div class="bg_icons"></div>
+}
+
+@section scripts
+{
+    <script type="text/javascript">
+
+        @if(ViewBag.fixedExchange)
+        {
+            @:var fixedRate = true;
+            @:$("#exchangeType").text('به نرخ لحظه');
+        }
+        else
+        {
+            @:var fixedRate = false;
+            @:$("#exchangeType").text('نرخ دقیق تبدیل');
+        }
+
+        $(document).ready(function () {
+    InitCurrenciesDropboxes();
+    setInterval(InitSelectPickers, 1);
+            $("#checkoutSendAmount").text(@amount);
+            $("#checkoutFromCurrency").text('@ViewBag.From');
+            $("#checkoutToCuurency").text('@ViewBag.To');
+            $('#classic_from_pair').selectpicker('val', '@ViewBag.from');
+            $('#fixed_from_pair').selectpicker('val', '@ViewBag.from');
+            $('#classic_to_pair').selectpicker('val', '@ViewBag.to');
+            $('#fixed_to_pair').selectpicker('val', '@ViewBag.to');
+    HandleClassic();
+    handleFixedRateStatus();
+
+
+});
+
+        $("#classicTab").on('click', function () {
+            fixedRate = false;
+            handleFixedRateStatus();
+        })
+        $("#fixedRateTab").on('click', function () {
+            fixedRate = true;
+            handleFixedRateStatus();
+        })
+
+        function handleFixedRateStatus() {
+            GetAvailableCurrenciesFor();
+            if (fixedRate) {
+                $("#classicTab").removeClass("active");
+                $("#fixedRateTab").addClass("active");
+                $("#exchangeType").text('نرخ دقیق تبدیل');
+                $("#networkFee").show();
+                $("#checkoutNetworkFee").show();
+            }
+            else {
+                $("#exchangeType").text('به نرخ لحظه');
+                $("#classicTab").addClass("active");
+                $("#fixedRateTab").removeClass("active");
+                $("#networkFee").hide();
+                $("#checkoutNetworkFee").hide();
+            }
+            HandleClassic();
+        }
+
+        function unhanddleError() {
+
+        }
+
+        $("#CheckoutForm").submit(function (eventObj) {
+            $(this).append('<input type="hidden" name="from" value="' + $('#classic_from_pair option:selected').val()+'" /> ');
+            $(this).append('<input type="hidden" name="to" value="' + $('#classic_to_pair option:selected').val() +'" /> ');
+            $(this).append('<input type="hidden" name="amount" value="' + $('#classic_from_amount').val() +'" /> ');
+            $(this).append('<input type="hidden" name="recipientWallet" value="' + $('#RecipientWallet').val() +'" /> ');
+            $(this).append('<input type="hidden" name="refundWallet" value="' + $('#RefundWallet').val() +'" /> ');
+            $(this).append('<input type="hidden" name="userEmail" value="' + $('#userEmail').val() + '" /> ');
+            $(this).append('<input type="hidden" name="fixedExchange" value="' + fixedRate + '" /> ');
+            return true;
+        });
+
+        $("#userEmail").on('keyup', function () {
+            if ($(this).val() != "") {
+                var regex = /^([a-zA-Z0-9_.+-])+\@@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
+                if (regex.test($(this).val())) {
+                    $('#emailValidationError').text('');
+                    $("#nextStep").prop('disabled', false);
+                }
+                else {
+                    $('#emailValidationError').text('آدرس وارد شده معتبر نیست');
+                    $("#nextStep").prop('disabled', true);
+                }
+
+            }
+            else {
+                $('#emailValidationError').text('');
+                $("#nextStep").prop('disabled', false);
+            }
+
+        })
+
+        $("#UserValidatedCheckbox").on('change', function () {
+            if ($(this).is(":checked") && $("#TermsCheckbox").is(":checked")) {
+                $("#confirmButton").prop('disabled', false);
+            }
+            else {
+                $("#confirmButton").prop('disabled', true);
+            }
+        })
+        $("#TermsCheckbox").on('change', function () {
+            if ($(this).is(":checked") && $("#UserValidatedCheckbox").is(":checked")) {
+                $("#confirmButton").prop('disabled', false);
+            }
+            else {
+                $("#confirmButton").prop('disabled', true);
+            }
+        })
+
+        function Back() {
+            $("#CompleteOrderCard").show();
+            $("#CheckoutCard").hide();
+            $("#navCheckout").removeClass("active");
+            $("#navCompleteOrder").addClass("active");
+
+            $("#navCompleteOrder i").removeClass("la la-circle");
+            $("#navCompleteOrder i").addClass("la la-check-circle");
+
+            $("#navCheckout i").removeClass("la la-check-circle");
+            $("#navCheckout i").addClass("la la-circle");
+
+        }
+
+        $("#completeOrderClassic").on('submit', function (e) {
+            e.preventDefault();
+            $("#addressValidationError").text('');
+            $("#refundAddressValidationError").text('');
+            $.ajax({
+                headers: { 'RequestVerificationToken': window.TokenHeaderValue },
+                contentType: "application/json; charset=utf-8",
+                url: "/InstantExchange/AddressValidation?currency=" + $('#classic_to_pair option:selected').val() + "&address=" + $("#RecipientWallet").val(), type: "Get", dataType: 'json',
+                error: function (request, status, error) {
+                    unhanddleError();
+                },
+                success: function (e) {
+
+                    if (e.result) {
+                        $.ajax({
+                            headers: { 'RequestVerificationToken': window.TokenHeaderValue },
+                            contentType: "application/json; charset=utf-8",
+                            url: "/InstantExchange/AddressValidation?currency=" + $('#classic_from_pair option:selected').val() + "&address=" + $("#RefundWallet").val(), type: "Get", dataType: 'json',
+                            error: function (request, status, error) {
+                                unhanddleError();
+                            },
+                            success: function (e) {
+
+                                if (e.result) {
+                                    $("#CompleteOrderCard").hide();
+                                    $("#CheckoutCard").show();
+                                    $("#navCompleteOrder").removeClass("active");
+                                    $("#navCheckout").addClass("active");
+                                    $("#navCompleteOrder i").removeClass("la la-check-circle");
+                                    $("#navCompleteOrder i").addClass("la la-circle");
+                                    $("#navCheckout i").removeClass("la la-circle");
+                                    $("#navCheckout i").addClass("la la-check-circle");
+                                }
+                                else {
+                                    $("#refundAddressValidationError").text("آدرس بازپرداخت وارد شده معتبر نمی باشد");
+                                }
+                            }
+                        })
+                    }
+                    else {
+                        $("#addressValidationError").text("آدرس مقصد وارد شده معتبر نمی باشد");
+
+
+                    }
+                }
+            })
+
+        })
+        function HandleClassic() {
+            var classic_from_pair = $('#classic_from_pair option:selected').val();
+            var classic_to_pair = $('#classic_to_pair option:selected').val();
+            $("#amountValidationError").text('');
+            var minAmmountToeExchange = 1;
+            if (classic_from_pair != "-1" && classic_to_pair != "-1" && parseFloat($("#classic_from_amount").val()) > 0) {
+                $.ajax({
+                    headers: { 'RequestVerificationToken': window.TokenHeaderValue },
+                    contentType: "application/json; charset=utf-8",
+                    url: "/InstantExchange/EstimatedExchangeAmount?amount=" + $("#classic_from_amount").val() + "&from_to=" + $('#classic_from_pair option:selected').val() + "_" + $('#classic_to_pair option:selected').val() + "&fixedRate=" + fixedRate, type: "Get", dataType: 'json',
+                    error: function (request, status, error) {
+                        unhanddleError();
+                    },
+                    success: function (e) {
+                        $("#classic_to_amount").val(0);
+                        $("#checkoutRecieveAmount").text(0);
+
+                        var estimatedAmount = parseFloat(e.estimatedAmount);
+                        if (e.error!="") {
+                            $("#nextStep").prop('disabled', true);
+                            $("#classic_to_amount").val(0);
+                            $("#checkoutRecieveAmount").text('0');
+                            $("#ClassicExchnageRateInfo").text(e.error);
+                        }
+                        else {
+                            if (fixedRate) {
+                                 $("#networkFee").text(e.networkFee +" : هزینه شبکه ");
+                                $("#checkoutNetworkFee").text(e.networkFee);
+                            }
+
+                            $("#nextStep").prop('disabled', false);
+                              $.ajax({
+                            headers: { 'RequestVerificationToken': window.TokenHeaderValue },
+                            contentType: "application/json; charset=utf-8",
+                            url: "/InstantExchange/MinExchangeAmount?from_to=" + $('#classic_from_pair option:selected').val() + "_" + $('#classic_to_pair option:selected').val(), type: "Get", dataType: 'json',
+                            error: function (request, status, error) {
+                                unhanddleError();
+                            },
+                            success: function (e) {
+                                minAmmountToeExchange = e.minAmount;
+                                if (minAmmountToeExchange < 1) {
+                                    minAmmountToeExchange = 1;
+                                }
+                                if (e.minAmount > parseFloat($("#classic_from_amount").val())) {
+                                    $("#amountValidationError").text(' کمترین میزان واریز برای این تبادل ' + e.minAmount + ' می باشد');
+
+                                }
+                                else {
+                                     $("#nextStep").prop('disabled', false);
+                                    $("#classic_to_amount").val(estimatedAmount);
+                                    $("#checkoutRecieveAmount").text(estimatedAmount);
+
+                                }
+
+
+                                $.ajax({
+                                    headers: { 'RequestVerificationToken': window.TokenHeaderValue },
+                                    contentType: "application/json; charset=utf-8",
+                                    url: "/InstantExchange/EstimatedExchangeAmount?amount=" + minAmmountToeExchange + "&from_to=" + $('#classic_from_pair option:selected').val() + "_" + $('#classic_to_pair option:selected').val() + "&fixedRate=" + fixedRate, type: "Get", dataType: 'json',
+                                    error: function (request, status, error) {
+                                        unhanddleError();
+                                    },
+                                    success: function (e) {
+                                        $("#checkoutTime").text(e.transactionSpeedForecast + "دقیقه");
+                                        $("#checkoutRate").text(minAmmountToeExchange+' ' + $('#classic_from_pair option:selected').val() + " ~ " + parseFloat(e.estimatedAmount) + " " + $('#classic_to_pair option:selected').val());
+                                        if ($('#classic_from_pair option:selected').val() == undefined) {
+                                            $("#ClassicExchnageRateInfo").text('');
+                                            $("#classic_from_img").hide();
+                                        }
+                                        else {
+                                            $("#ClassicExchnageRateInfo").text(minAmmountToeExchange+' ' + $('#classic_from_pair option:selected').val() + " ~ " + parseFloat(e.estimatedAmount) + " " + $('#classic_to_pair option:selected').val());
+                                        }
+
+                                    }
+                                })
+
+                            }
+                        })
+                        }
+
+
+
+
+                    }
+                })
+
+
+            }
+            else {
+                $("#ClassicExchnageRateInfo").text('');
+            }
+        }
+
+        $('#RecipientWallet').on('keyup', function () {
+            $("#checkoutWallet").text($(this).val());
+        });
+        $('#RefundWallet').on('keyup', function () {
+            $("#checkoutRefundWallet").text($(this).val());
+        });
+
+        $('#classic_from_amount').on('keyup', function () {
+            $("#checkoutSendAmount").text($(this).val());
+            HandleClassic();
+        });
+        $('#classic_from_pair').on('change', function () {
+            $("#checkoutFromCurrency").text($('#classic_from_pair option:selected').val());
+            $("#classic_from_img").attr('src', '/Resources/SVG-icons/' + $('#classic_from_pair option:selected').val() + ".svg");
+
+            HandleClassic();
+        });
+        $('#classic_to_pair').on('change', function () {
+            $("#checkoutToCuurency").text($('#classic_to_pair option:selected').val());
+            $("#classic_to_img").attr('src', '/Resources/SVG-icons/' + $('#classic_to_pair option:selected').val() + ".svg");
+            GetAvailableCurrenciesFor();
+            HandleClassic();
+        });
+        $('#fixed_from_pair').on('change', function () {
+            var selected = $('#fixed_from_pair option:selected').val();
+
+        });
+        $('#fixed_to_pair').on('change', function () {
+            var selected = $('#fixed_to_pair option:selected').val();
+
+        });
+        function InitSelectPickers() {
+            $(".dropdown-toggle").each(function () {
+                $(this).addClass("form-control");
+            })
+        }
+        function InitCurrenciesDropboxes() {
+
+
+        }
+
+        function GetAvailableCurrenciesFor() {
+
+            $.ajax({
+                headers: { 'RequestVerificationToken': window.TokenHeaderValue },
+                url: "/InstantExchange/GetAvailableCurrenciesFor?basePair=" + $('#classic_to_pair option:selected').val() + "&fixedRate=" + fixedRate, type: "Get", dataType: 'json',
+                error: function (request, status, error) {
+                    unhanddleError();
+                },
+                success: function (e) {
+
+                    $('#classic_from_pair').html('');
+                    $("#classic_from_img").show();
+                    $.each(e, function (index, value) {
+                        $('#classic_from_pair').append('<option value="' + value.ticker + '">'+value.ticker+" - " + value.name + '</option>');
+                    });
+                    if (e.length != 0) {
+                        $('#classic_from_pair').selectpicker('val', e[0].ticker);
+                    }
+
+                    $('#classic_from_pair').selectpicker("refresh");
+                }
+            })
+        }
+
+
+        function GetAvailableCurrencies() {
+
+            $.ajax({
+                headers: { 'RequestVerificationToken': window.TokenHeaderValue },
+                url: "/InstantExchange/GetAvailableCurrencies?fixedRate=" + fixedRate, type: "Get", dataType: 'json',
+                error: function (request, status, error) {
+                    unhanddleError();
+                },
+                success: function (e) {
+                    $('select[name="currency"]').each(function () {
+                        $(this).html('');
+                        $(this).append('<option value="-1">انتخاب کنید</option>');
+                        var select = $(this);
+                        $.each(e, function (index, value) {
+                            $(select).append('<option value="' + value.ticker + '">' + value.ticker+" - " + value.name + '</option>');
+                        });
+
+                    });
+
+                    @if(ViewBag.to!=null)
+                    {
+                        @:$('#classic_from_pair').selectpicker('val', '@ViewBag.from');
+                        @:$('#fixed_from_pair').selectpicker('val', '@ViewBag.from');
+                        @:$('#classic_to_pair').selectpicker('val', '@ViewBag.to');
+                        @:$('#fixed_to_pair').selectpicker('val', '@ViewBag.to');
+                    }
+
+
+                }
+            })
+        }
+        $("#FixedExchnage").on("submit", function (e) {
+            e.preventDefault();
+
+            alert("FixedExchnage");
+        });
+        $("#ClassicExchnage").on("submit", function (e) {
+            e.preventDefault();
+            window.location = "/InstantExchange/StartExchange?amount=" + $("#classic_from_amount").val() + "&from_to=" + $('#classic_from_pair option:selected').val() + "_" + $('#classic_to_pair option:selected').val()+"&fixedRate=" + fixedRate;
+        });
+    </script>
+}
+

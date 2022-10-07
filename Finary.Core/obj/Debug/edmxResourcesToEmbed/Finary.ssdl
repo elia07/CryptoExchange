@@ -1,0 +1,569 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FinaryModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="xID" />
+    </Key>
+    <Property Name="xID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="xEmail" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="xPassword" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="xName" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="xType" Type="tinyint" Nullable="false" />
+    <Property Name="xIsActive" Type="bit" Nullable="false" />
+    <Property Name="xSalt" Type="varchar" MaxLength="500" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AdminRole">
+    <Key>
+      <PropertyRef Name="xID" />
+    </Key>
+    <Property Name="xID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="xAdminID" Type="bigint" Nullable="false" />
+    <Property Name="xSectionType" Type="tinyint" Nullable="false" />
+    <Property Name="xCrudPermission" Type="char" MaxLength="5" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Exchange">
+    <Key>
+      <PropertyRef Name="xID" />
+    </Key>
+    <Property Name="xID" Type="bigint" Nullable="false" />
+    <Property Name="xUserID" Type="bigint" />
+    <Property Name="xRialTransactionID" Type="bigint" />
+    <Property Name="xFacilitatorID" Type="bigint" />
+    <Property Name="xWithdrawalID" Type="bigint" />
+    <Property Name="xExchangeType" Type="tinyint" Nullable="false" />
+    <Property Name="xApiRequestID" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="xFormCurrency" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="xToCurrency" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="xFromAmount" Type="float" Nullable="false" />
+    <Property Name="xToAmount" Type="float" Nullable="false" />
+    <Property Name="xPaymentTXID" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="xApiComission" Type="float" Nullable="false" />
+    <Property Name="xApiComissionPercent" Type="float" Nullable="false" />
+    <Property Name="xComission" Type="float" Nullable="false" />
+    <Property Name="xComissionPercent" Type="float" Nullable="false" />
+    <Property Name="xDate" Type="datetime" Nullable="false" />
+    <Property Name="xStatus" Type="tinyint" Nullable="false" />
+    <Property Name="xWatchDate" Type="datetime" Nullable="false" />
+    <Property Name="xRefferalSharePercent" Type="float" Nullable="false" />
+    <Property Name="xRefferalShare" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FacilitatorTransaction">
+    <Key>
+      <PropertyRef Name="xID" />
+    </Key>
+    <Property Name="xID" Type="bigint" Nullable="false" />
+    <Property Name="xOrderID" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="xDetail" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FileData">
+    <Key>
+      <PropertyRef Name="xID" />
+    </Key>
+    <Property Name="xID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="xSystemnFileID" Type="bigint" Nullable="false" />
+    <Property Name="xData" Type="varbinary(max)" Nullable="false" />
+    <Property Name="xIsThumbnail" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LoginHistory">
+    <Key>
+      <PropertyRef Name="xID" />
+    </Key>
+    <Property Name="xID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="xUserID" Type="bigint" Nullable="false" />
+    <Property Name="xDate" Type="datetime" Nullable="false" />
+    <Property Name="xIP" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="xDeviceID" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="xUserAgent" Type="nvarchar" MaxLength="512" Nullable="false" />
+    <Property Name="xFraudDetected" Type="bit" Nullable="false" />
+    <Property Name="xRayID" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="PrivateMessage">
+    <Key>
+      <PropertyRef Name="xID" />
+    </Key>
+    <Property Name="xID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="xUserID" Type="bigint" Nullable="false" />
+    <Property Name="xTitle" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="xMessage" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="xUserReadDate" Type="datetime" />
+    <Property Name="xSendDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RefferalShareHistory">
+    <Key>
+      <PropertyRef Name="xID" />
+    </Key>
+    <Property Name="xID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="xUserID" Type="bigint" Nullable="false" />
+    <Property Name="xFromUserID" Type="bigint" Nullable="false" />
+    <Property Name="xFromCurrency" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="xValue" Type="float" Nullable="false" />
+    <Property Name="xDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RefferalWallet">
+    <Key>
+      <PropertyRef Name="xID" />
+    </Key>
+    <Property Name="xID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="xUserID" Type="bigint" Nullable="false" />
+    <Property Name="xCurrency" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="xValue" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RefferalWithdrawal">
+    <Key>
+      <PropertyRef Name="xID" />
+    </Key>
+    <Property Name="xID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="xUserID" Type="bigint" Nullable="false" />
+    <Property Name="xCurrency" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="xStatus" Type="tinyint" Nullable="false" />
+    <Property Name="xWalletAddress" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="xDescription" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="xDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RialGateway">
+    <Key>
+      <PropertyRef Name="xID" />
+    </Key>
+    <Property Name="xID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="xName" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="xType" Type="tinyint" Nullable="false" />
+    <Property Name="xIsActive" Type="bit" Nullable="false" />
+    <Property Name="xConfig" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="xIsPrimary" Type="bit" Nullable="false" />
+    <Property Name="xTodayTotalTransactionAmounts" Type="bigint" Nullable="false" />
+    <Property Name="xLastSuccessTransactionDate" Type="datetime" Nullable="false" />
+    <Property Name="xComissionPercent" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RialTransaction">
+    <Key>
+      <PropertyRef Name="xID" />
+    </Key>
+    <Property Name="xID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="xUserID" Type="bigint" Nullable="false" />
+    <Property Name="xGatewayID" Type="bigint" Nullable="false" />
+    <Property Name="xDate" Type="datetime" Nullable="false" />
+    <Property Name="xAmount" Type="bigint" Nullable="false" />
+    <Property Name="xVerified" Type="bit" Nullable="false" />
+    <Property Name="xPaymentInfo" Type="nvarchar(max)" />
+    <Property Name="xComissionPercent" Type="float" Nullable="false" />
+    <Property Name="xComissionAmount" Type="float" Nullable="false" />
+    <Property Name="xBankRef" Type="nvarchar" MaxLength="250" />
+    <Property Name="xInvoice_key" Type="varchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="Setting">
+    <Key>
+      <PropertyRef Name="xID" />
+    </Key>
+    <Property Name="xID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="xKey" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="xValue" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Signal">
+    <Key>
+      <PropertyRef Name="xID" />
+    </Key>
+    <Property Name="xID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="xDate" Type="datetime" Nullable="false" />
+    <Property Name="xDetail" Type="varchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SystemFile">
+    <Key>
+      <PropertyRef Name="xID" />
+    </Key>
+    <Property Name="xID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="xFileExtention" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="xContentType" Type="varchar" MaxLength="50" />
+    <Property Name="xFileName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="xAddingDate" Type="datetime" Nullable="false" />
+    <Property Name="xMD5" Type="char" MaxLength="32" />
+    <Property Name="xIsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="xID" />
+    </Key>
+    <Property Name="xID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="xFullName" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="xEmail" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="xCellphone" Type="char" MaxLength="11" Nullable="false" />
+    <Property Name="xTel" Type="varchar" MaxLength="20" />
+    <Property Name="xPassword" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="xSalt" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="xIsActive" Type="bit" Nullable="false" />
+    <Property Name="xDescription" Type="nvarchar" MaxLength="500" />
+    <Property Name="xNationalIDImage" Type="bigint" />
+    <Property Name="xNationalIDNumber" Type="varchar" MaxLength="50" />
+    <Property Name="xIsEmailValidated" Type="bit" Nullable="false" />
+    <Property Name="xIsNationalIDValidated" Type="bit" Nullable="false" />
+    <Property Name="xTelValidated" Type="bit" Nullable="false" />
+    <Property Name="xCellphoneValidated" Type="bit" Nullable="false" />
+    <Property Name="xSignupDate" Type="datetime" Nullable="false" />
+    <Property Name="xLastSigninDate" Type="datetime" />
+    <Property Name="xActivationCode" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="xActivationCodeExpireAt" Type="datetime" />
+    <Property Name="xCellphoneActivationCode" Type="varchar" MaxLength="20" />
+    <Property Name="xLastSendEmailDate" Type="datetime" />
+    <Property Name="xLastSendSmsDate" Type="datetime" />
+    <Property Name="xRialWallet" Type="bigint" Nullable="false" />
+    <Property Name="xTetherWallet" Type="float" Nullable="false" />
+    <Property Name="xInviteID" Type="bigint" Nullable="false" />
+    <Property Name="xRefferalSharePercent" Type="bigint" Nullable="false" />
+    <Property Name="xInviter" Type="bigint" />
+    <Property Name="xMaxDailyRialAmount" Type="bigint" Nullable="false" />
+    <Property Name="xTodayRialAmount" Type="bigint" Nullable="false" />
+    <Property Name="xSubscriptionType" Type="tinyint" Nullable="false" />
+    <Property Name="xSubscriptionExpireDate" Type="datetime" Nullable="false" />
+    <Property Name="xUserValidationProgress" Type="tinyint" Nullable="false" />
+    <Property Name="xTotalInvitedUsers" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserBankAccount">
+    <Key>
+      <PropertyRef Name="xID" />
+    </Key>
+    <Property Name="xID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="xUserID" Type="bigint" Nullable="false" />
+    <Property Name="xBankType" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="xCartNumber" Type="char" MaxLength="16" Nullable="false" />
+    <Property Name="xShebaNumber" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="xAccountNumber" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="xIsVerified" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Withdrawal">
+    <Key>
+      <PropertyRef Name="xID" />
+    </Key>
+    <Property Name="xID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="xUserID" Type="bigint" Nullable="false" />
+    <Property Name="xUserBankAccountID" Type="bigint" />
+    <Property Name="xDate" Type="datetime" Nullable="false" />
+    <Property Name="xAmount" Type="int" Nullable="false" />
+    <Property Name="xStatus" Type="tinyint" Nullable="false" />
+    <Property Name="xDescription" Type="nvarchar" MaxLength="250" />
+    <Property Name="xSettlementDate" Type="datetime" />
+    <Property Name="xWithdrawalCost" Type="bigint" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_NationalImageID_User_SystemFile">
+    <End Role="SystemFile" Type="Self.SystemFile" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SystemFile">
+        <PropertyRef Name="xID" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="xNationalIDImage" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_UserBankAccount">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="UserBankAccount" Type="Self.UserBankAccount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="xID" />
+      </Principal>
+      <Dependent Role="UserBankAccount">
+        <PropertyRef Name="xUserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Fk_xAdminID_AdminRole_Admin">
+    <End Role="Admin" Type="Self.Admin" Multiplicity="1" />
+    <End Role="AdminRole" Type="Self.AdminRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Admin">
+        <PropertyRef Name="xID" />
+      </Principal>
+      <Dependent Role="AdminRole">
+        <PropertyRef Name="xAdminID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_xBankAccountID_Withdrawal_BankAccount">
+    <End Role="UserBankAccount" Type="Self.UserBankAccount" Multiplicity="0..1" />
+    <End Role="Withdrawal" Type="Self.Withdrawal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserBankAccount">
+        <PropertyRef Name="xID" />
+      </Principal>
+      <Dependent Role="Withdrawal">
+        <PropertyRef Name="xUserBankAccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_xFacilitatorID_Facilitator">
+    <End Role="FacilitatorTransaction" Type="Self.FacilitatorTransaction" Multiplicity="0..1" />
+    <End Role="Exchange" Type="Self.Exchange" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FacilitatorTransaction">
+        <PropertyRef Name="xID" />
+      </Principal>
+      <Dependent Role="Exchange">
+        <PropertyRef Name="xFacilitatorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_xFromUserID_User_RefferalShareHistory">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="RefferalShareHistory" Type="Self.RefferalShareHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="xID" />
+      </Principal>
+      <Dependent Role="RefferalShareHistory">
+        <PropertyRef Name="xFromUserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_xGatewayID_Transaction_Gateway">
+    <End Role="RialGateway" Type="Self.RialGateway" Multiplicity="1" />
+    <End Role="RialTransaction" Type="Self.RialTransaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RialGateway">
+        <PropertyRef Name="xID" />
+      </Principal>
+      <Dependent Role="RialTransaction">
+        <PropertyRef Name="xGatewayID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_xInviter_User">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="User1" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="xID" />
+      </Principal>
+      <Dependent Role="User1">
+        <PropertyRef Name="xInviter" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_xRialTransactionID_RialTransaction">
+    <End Role="RialTransaction" Type="Self.RialTransaction" Multiplicity="0..1" />
+    <End Role="Exchange" Type="Self.Exchange" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RialTransaction">
+        <PropertyRef Name="xID" />
+      </Principal>
+      <Dependent Role="Exchange">
+        <PropertyRef Name="xRialTransactionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_xSystemFileID_FileData_SystemFile">
+    <End Role="SystemFile" Type="Self.SystemFile" Multiplicity="1" />
+    <End Role="FileData" Type="Self.FileData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SystemFile">
+        <PropertyRef Name="xID" />
+      </Principal>
+      <Dependent Role="FileData">
+        <PropertyRef Name="xSystemnFileID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_xUserID_Exchange">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Exchange" Type="Self.Exchange" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="xID" />
+      </Principal>
+      <Dependent Role="Exchange">
+        <PropertyRef Name="xUserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_xUserID_LoginHistory_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="LoginHistory" Type="Self.LoginHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="xID" />
+      </Principal>
+      <Dependent Role="LoginHistory">
+        <PropertyRef Name="xUserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_xUserID_PrivateMessage_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="PrivateMessage" Type="Self.PrivateMessage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="xID" />
+      </Principal>
+      <Dependent Role="PrivateMessage">
+        <PropertyRef Name="xUserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_xUserID_Transaction_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="RialTransaction" Type="Self.RialTransaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="xID" />
+      </Principal>
+      <Dependent Role="RialTransaction">
+        <PropertyRef Name="xUserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_xUserID_User_RefferalShareHistory">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="RefferalShareHistory" Type="Self.RefferalShareHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="xID" />
+      </Principal>
+      <Dependent Role="RefferalShareHistory">
+        <PropertyRef Name="xUserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_xUserID_User_RefferalWallet">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="RefferalWallet" Type="Self.RefferalWallet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="xID" />
+      </Principal>
+      <Dependent Role="RefferalWallet">
+        <PropertyRef Name="xUserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_xUserID_User_RefferalWithdrawal">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="RefferalWithdrawal" Type="Self.RefferalWithdrawal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="xID" />
+      </Principal>
+      <Dependent Role="RefferalWithdrawal">
+        <PropertyRef Name="xUserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_xUserID_Withdrawal_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Withdrawal" Type="Self.Withdrawal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="xID" />
+      </Principal>
+      <Dependent Role="Withdrawal">
+        <PropertyRef Name="xUserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_xWithdrawalID_Withdrawal">
+    <End Role="Withdrawal" Type="Self.Withdrawal" Multiplicity="0..1" />
+    <End Role="Exchange" Type="Self.Exchange" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Withdrawal">
+        <PropertyRef Name="xID" />
+      </Principal>
+      <Dependent Role="Exchange">
+        <PropertyRef Name="xWithdrawalID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FinaryModelStoreContainer">
+    <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AdminRole" EntityType="Self.AdminRole" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Exchange" EntityType="Self.Exchange" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FacilitatorTransaction" EntityType="Self.FacilitatorTransaction" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FileData" EntityType="Self.FileData" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LoginHistory" EntityType="Self.LoginHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PrivateMessage" EntityType="Self.PrivateMessage" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RefferalShareHistory" EntityType="Self.RefferalShareHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RefferalWallet" EntityType="Self.RefferalWallet" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RefferalWithdrawal" EntityType="Self.RefferalWithdrawal" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RialGateway" EntityType="Self.RialGateway" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RialTransaction" EntityType="Self.RialTransaction" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Setting" EntityType="Self.Setting" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Signal" EntityType="Self.Signal" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SystemFile" EntityType="Self.SystemFile" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserBankAccount" EntityType="Self.UserBankAccount" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Withdrawal" EntityType="Self.Withdrawal" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_NationalImageID_User_SystemFile" Association="Self.FK_NationalImageID_User_SystemFile">
+      <End Role="SystemFile" EntitySet="SystemFile" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_UserBankAccount" Association="Self.FK_User_UserBankAccount">
+      <End Role="User" EntitySet="User" />
+      <End Role="UserBankAccount" EntitySet="UserBankAccount" />
+    </AssociationSet>
+    <AssociationSet Name="Fk_xAdminID_AdminRole_Admin" Association="Self.Fk_xAdminID_AdminRole_Admin">
+      <End Role="Admin" EntitySet="Admin" />
+      <End Role="AdminRole" EntitySet="AdminRole" />
+    </AssociationSet>
+    <AssociationSet Name="FK_xBankAccountID_Withdrawal_BankAccount" Association="Self.FK_xBankAccountID_Withdrawal_BankAccount">
+      <End Role="UserBankAccount" EntitySet="UserBankAccount" />
+      <End Role="Withdrawal" EntitySet="Withdrawal" />
+    </AssociationSet>
+    <AssociationSet Name="FK_xFacilitatorID_Facilitator" Association="Self.FK_xFacilitatorID_Facilitator">
+      <End Role="FacilitatorTransaction" EntitySet="FacilitatorTransaction" />
+      <End Role="Exchange" EntitySet="Exchange" />
+    </AssociationSet>
+    <AssociationSet Name="FK_xFromUserID_User_RefferalShareHistory" Association="Self.FK_xFromUserID_User_RefferalShareHistory">
+      <End Role="User" EntitySet="User" />
+      <End Role="RefferalShareHistory" EntitySet="RefferalShareHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_xGatewayID_Transaction_Gateway" Association="Self.FK_xGatewayID_Transaction_Gateway">
+      <End Role="RialGateway" EntitySet="RialGateway" />
+      <End Role="RialTransaction" EntitySet="RialTransaction" />
+    </AssociationSet>
+    <AssociationSet Name="FK_xInviter_User" Association="Self.FK_xInviter_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="User1" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_xRialTransactionID_RialTransaction" Association="Self.FK_xRialTransactionID_RialTransaction">
+      <End Role="RialTransaction" EntitySet="RialTransaction" />
+      <End Role="Exchange" EntitySet="Exchange" />
+    </AssociationSet>
+    <AssociationSet Name="FK_xSystemFileID_FileData_SystemFile" Association="Self.FK_xSystemFileID_FileData_SystemFile">
+      <End Role="SystemFile" EntitySet="SystemFile" />
+      <End Role="FileData" EntitySet="FileData" />
+    </AssociationSet>
+    <AssociationSet Name="FK_xUserID_Exchange" Association="Self.FK_xUserID_Exchange">
+      <End Role="User" EntitySet="User" />
+      <End Role="Exchange" EntitySet="Exchange" />
+    </AssociationSet>
+    <AssociationSet Name="FK_xUserID_LoginHistory_User" Association="Self.FK_xUserID_LoginHistory_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="LoginHistory" EntitySet="LoginHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_xUserID_PrivateMessage_User" Association="Self.FK_xUserID_PrivateMessage_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="PrivateMessage" EntitySet="PrivateMessage" />
+    </AssociationSet>
+    <AssociationSet Name="FK_xUserID_Transaction_User" Association="Self.FK_xUserID_Transaction_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="RialTransaction" EntitySet="RialTransaction" />
+    </AssociationSet>
+    <AssociationSet Name="FK_xUserID_User_RefferalShareHistory" Association="Self.FK_xUserID_User_RefferalShareHistory">
+      <End Role="User" EntitySet="User" />
+      <End Role="RefferalShareHistory" EntitySet="RefferalShareHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_xUserID_User_RefferalWallet" Association="Self.FK_xUserID_User_RefferalWallet">
+      <End Role="User" EntitySet="User" />
+      <End Role="RefferalWallet" EntitySet="RefferalWallet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_xUserID_User_RefferalWithdrawal" Association="Self.FK_xUserID_User_RefferalWithdrawal">
+      <End Role="User" EntitySet="User" />
+      <End Role="RefferalWithdrawal" EntitySet="RefferalWithdrawal" />
+    </AssociationSet>
+    <AssociationSet Name="FK_xUserID_Withdrawal_User" Association="Self.FK_xUserID_Withdrawal_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Withdrawal" EntitySet="Withdrawal" />
+    </AssociationSet>
+    <AssociationSet Name="FK_xWithdrawalID_Withdrawal" Association="Self.FK_xWithdrawalID_Withdrawal">
+      <End Role="Withdrawal" EntitySet="Withdrawal" />
+      <End Role="Exchange" EntitySet="Exchange" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

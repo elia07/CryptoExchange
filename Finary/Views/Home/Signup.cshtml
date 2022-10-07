@@ -1,0 +1,127 @@
+﻿@using BotDetect.Web.Mvc;
+@{
+    Layout = "~/Views/Shared/PublicLayout.cshtml";
+}
+
+@section TopMenu{
+    <ul class="navbar-nav">
+    </ul>
+}
+
+<div class="section-padding">
+    <div class="container h-100">
+        <div class="row justify-content-center h-100 align-items-center">
+            <div class="col-xl-4 col-md-6">
+                <div class="auth-form card">
+                    <div class="card-header justify-content-center">
+                        <h4 class="card-title">ثبت نام</h4>
+                    </div>
+                    <div class="card-body">
+                        <form method="post" id="Signup" name="Signup" data-parsley-validate>
+                            <div class="form-group">
+                                <label>کد معرفی</label>
+                                <input type="text" class="form-control" placeholder="کد معرفی" name="InviteID" data-parsley-type="digits" data-trigger="change">
+                            </div>
+                            <div class="form-group">
+                                <label>نام و نام خانوادگی</label>
+                                <input type="text" class="form-control" placeholder="نام و نام خانوادگی" name="Fullname" data-parsley-justPersianChars="justPersianChars" data-parsley-required data-trigger="change">
+                            </div>
+                            <div class="form-group">
+                                <label>تلفن همراه</label>
+                                <input type="text" class="form-control" placeholder="تلفن همراه" name="Cellphone" data-parsley-irCellphone="irCellphone" data-parsley-required data-trigger="change">
+                            </div>
+                            <div class="form-group">
+                                <label>پست الکترونیک</label>
+                                <input type="email" class="form-control" placeholder="hello@example.com" name="email" data-parsley-type="email" data-trigger="change" required>
+                            </div>
+                            <div class="form-group">
+                                <label>رمزعبور</label>
+                                <input id="singup_xPassword" type="password" class="form-control" placeholder="Password" name="password" data-parsley-minlength="5" data-trigger="change" required>
+                            </div>
+                            <div class="form-group">
+                                <label>تکرار رمزعبور</label>
+                                <input type="password" class="form-control" data-parsley-equalto="#singup_xPassword" data-trigger="change" required>
+                            </div>
+                            @{
+                                MvcCaptcha RegisterCaptcha = new MvcCaptcha("RegisterCaptcha");
+
+                            }
+                            <div class="form-group">
+                                <label>کد امنیتی</label>
+                                @Html.Captcha(RegisterCaptcha) <br>
+                                @Html.TextBox("RegisterCaptcha", null, new { @class = "form-control", @PlaceHolder = "کد امنیتی", @id = "RegisterCaptcha", @autocomplete = "off", @required = "" })
+                            </div>
+                            <div class="text-center mt-4">
+                                <button type="submit" class="btn btn-success btn-block">ثبت نام</button>
+                            </div>
+                        </form>
+                        <div class="new-account mt-3">
+                            <p>
+                                قبلا ثبت نام کرده اید ؟ <a class="text-primary" href="signin.html">ورود</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section customMarkups{
+    <div class="bg_icons"></div>
+}
+
+@section scripts{
+    <script type="text/javascript">
+        $("#Signup").submit(function (event) {
+            event.preventDefault();
+            if (!$("#Signup").parsley().validate()) {
+                return;
+            }
+            $.ajax({
+                headers: { 'RequestVerificationToken': window.TokenHeaderValue },
+                url: "/Home/Register", data: $(this).serialize(), type: "POST", dataType: 'json',
+                error: function (request, status, error) {
+                    unhanddleError();
+                },
+                success: function (e) {
+                    if (e.CustomFields != undefined && e.CustomFields.Redirect != undefined) {
+                        window.location.href = e.CustomFields.Redirect;
+                        return;
+                    }
+                    if (!e.Status) {
+                        $("#RegisterCaptcha_ReloadIcon").click();
+                        if (e.Message.includes("wrong")) {
+                            window.location.reload();
+                        }
+                        else {
+                            Swal({
+                                title: e.CustomFields.title,
+                                text: e.Message,
+                                type: 'error',
+                                confirmButtonText: e.CustomFields.confirmButtonText
+                            });
+                        }
+                
+                    }
+                    else {
+                        Swal({
+                            title: e.CustomFields.title,
+                            text: e.Message,
+                            type: 'success',
+                            timer: 2000,
+                            showConfirmButton: false,
+                            onClose: function () {
+                                $("#RegisterModal").modal("hide");
+                                $("#LoginModal").modal("show");
+                            }
+                        });
+              
+                    }
+                }
+            });
+
+        });
+    </script>
+}
